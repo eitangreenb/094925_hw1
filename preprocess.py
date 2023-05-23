@@ -92,7 +92,8 @@ def preprocess(patient_file):
 def create_df(path, name_to_save=None):
     df = pd.DataFrame()
     for file in tqdm(os.listdir(path)):
-        df = df.append(preprocess(path + file))
+        file_path = os.path.join(path, file)
+        df = df.append(preprocess(file_path))
     if name_to_save is not None:
         df.to_csv(name_to_save, index=False)
     return df
